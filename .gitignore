@@ -1,0 +1,45 @@
+# ملفات النظام
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ملفات PHP
+*.log
+*.cache
+
+# ملفات الإعدادات المحلية
+config/local.php
+
+# الصور المرفوعة
+uploads/*
+!uploads/.gitkeep
+images/products/*
+!images/products/.gitkeep
+images/recipes/*
+!images/recipes/.gitkeep
+images/slider/*
+!images/slider/.gitkeep
+
+# استثناء placeholder
+!images/placeholder.jpg
+
+# ملفات IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ملفات Composer
+vendor/
+composer.lock
+
+# ملفات Node
+node_modules/
+package-lock.json
+
+# ملفات قاعدة البيانات
+*.sql.bak
+*.sql.backup
+

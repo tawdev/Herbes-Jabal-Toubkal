@@ -31,6 +31,10 @@ $stats['total_sales'] = $result->fetch_assoc()['total'] ?: 0;
 $result = $conn->query("SELECT COUNT(*) as count FROM recipes");
 $stats['recipes'] = $result->fetch_assoc()['count'];
 
+// عدد رسائل الاتصال الجديدة
+$result = $conn->query("SELECT COUNT(*) as count FROM contacts WHERE status = 'new'");
+$stats['new_contacts'] = $result->fetch_assoc()['count'];
+
 // آخر الطلبات
 $result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 5");
 $recent_orders = $result->fetch_all(MYSQLI_ASSOC);
@@ -122,6 +126,7 @@ closeDBConnection($conn);
                     <a href="products.php">المنتجات</a>
                     <a href="orders.php">الطلبات</a>
                     <a href="recipes.php">الوصفات</a>
+                    <a href="contacts.php">رسائل الاتصال</a>
                     <a href="../index.php">الموقع</a>
                     <a href="logout.php">تسجيل الخروج</a>
                 </div>
@@ -151,6 +156,10 @@ closeDBConnection($conn);
             <div class="stat-card">
                 <div class="stat-value"><?php echo $stats['recipes']; ?></div>
                 <div class="stat-label">الوصفات</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #1e40af;"><?php echo $stats['new_contacts']; ?></div>
+                <div class="stat-label">رسائل جديدة</div>
             </div>
         </div>
         

@@ -41,23 +41,40 @@
                 <div class="footer-section">
                     <h4>معلومات التواصل</h4>
                     <ul>
-                        <li>📧 contact@herbesjabaltoubkal.com</li>
-                        <li>📞 +212 674-862173</li>
-                        <li>📍 N, TAW10, lot Iguder, 48 AV Alla El Fassi, Marrakech 40000</li>
+                        <li class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <a href="mailto:contact@herbesjabaltoubkal.com" class="contact-link" dir="ltr">
+                                contact@herbesjabaltoubkal.com
+                            </a>
+                        </li>
+                        <li class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:+212674862173" class="contact-link" dir="ltr">
+                                +212 674-862173
+                            </a>
+                        </li>
+                        <li class="contact-item contact-address">
+                            <span class="contact-icon">📍</span>
+                            <span class="contact-text" dir="ltr">
+                                N, TAW10, lot Iguder, 48 AV Alla El Fassi<br>
+                                Marrakech 40000, Morocco
+                            </span>
+                        </li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <h4>ساعات العمل</h4>
                     <ul>
-                        <li>السبت - الخميس: 9:00 - 20:00</li>
-                        <li>الجمعة: 14:00 - 20:00</li>
+                        <li>السبت - الخميس: <span dir="ltr">9:00 - 20:00</span></li>
+                        <li>الجمعة: <span dir="ltr">14:00 - 20:00</span></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> Tawabil. جميع الحقوق محفوظة.</p>
+                <p>&copy; <?php echo date('Y'); ?> Herbes Jabal Toubkal
+                . جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>

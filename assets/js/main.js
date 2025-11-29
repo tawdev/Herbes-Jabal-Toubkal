@@ -150,6 +150,71 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Smooth scroll للروابط الداخلية
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// معالجة نموذج الاتصال
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const messageDiv = document.getElementById('contactMessage');
+        const submitBtn = this.querySelector('button[type="submit"]');
+        
+        // تعطيل الزر أثناء الإرسال
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'جاري الإرسال...';
+        messageDiv.style.display = 'none';
+        
+        fetch('api/contact.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            messageDiv.style.display = 'block';
+            if (data.success) {
+                messageDiv.style.color = '#10b981';
+                messageDiv.textContent = data.message;
+                contactForm.reset();
+            } else {
+                messageDiv.style.color = '#ef4444';
+                messageDiv.textContent = data.message || 'حدث خطأ أثناء إرسال الرسالة';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            messageDiv.style.display = 'block';
+            messageDiv.style.color = '#ef4444';
+            messageDiv.textContent = 'حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.';
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'إرسال الرسالة';
+        });
+    });
+}
+
 // إضافة أنيميشن للبطاقات عند التمرير
 const observerOptions = {
     threshold: 0.1,

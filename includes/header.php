@@ -30,8 +30,8 @@ if (!defined('SITE_NAME')) {
                     <a href="<?php echo BASE_URL; ?>index.php">الرئيسية</a>
                     <a href="<?php echo BASE_URL; ?>shop.php">المتجر</a>
                     <a href="<?php echo BASE_URL; ?>recipes.php">الوصفات</a>
-                    <a href="<?php echo BASE_URL; ?>index.php#about">من نحن</a>
-                    <a href="<?php echo BASE_URL; ?>index.php#contact">اتصل بنا</a>
+                    <a href="<?php echo BASE_URL; ?>about.php">من نحن</a>
+                    <a href="<?php echo BASE_URL; ?>contact.php">اتصل بنا</a>
                 </nav>
                 
                 <div class="header-actions">

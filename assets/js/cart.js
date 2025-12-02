@@ -79,10 +79,10 @@ function updateCartTotal() {
 
 // دالة لتنسيق السعر (مطابقة لتنسيق PHP)
 function formatPrice(price) {
-    // استخدام نفس التنسيق المستخدم في PHP: number_format($price, 2) . ' د.م.'
+    // استخدام نفس التنسيق المستخدم في PHP: number_format($price, 2) . ' DH'
     const formatted = parseFloat(price).toFixed(2);
     // إضافة فواصل للأرقام الكبيرة
-    return formatted.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' د.م.';
+    return formatted.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' DH';
 }
 
 // إضافة مستمعات الأحداث لجميع حقول الكمية

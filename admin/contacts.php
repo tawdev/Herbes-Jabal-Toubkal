@@ -2,7 +2,7 @@
 require_once '../config/config.php';
 
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    redirect('login.php');
 }
 
 $conn = getDBConnection();
@@ -16,7 +16,7 @@ if (isset($_GET['update_status'])) {
     $stmt->bind_param("si", $status, $contactId);
     $stmt->execute();
     $stmt->close();
-    redirect('admin/contacts.php');
+    redirect('contacts.php');
 }
 
 // حذف رسالة
@@ -27,7 +27,7 @@ if (isset($_GET['delete'])) {
     $stmt->bind_param("i", $contactId);
     $stmt->execute();
     $stmt->close();
-    redirect('admin/contacts.php');
+    redirect('contacts.php');
 }
 
 // حفظ ملاحظات المسؤول
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_notes'])) {
     $stmt->bind_param("si", $notes, $contactId);
     $stmt->execute();
     $stmt->close();
-    redirect('admin/contacts.php');
+    redirect('contacts.php');
 }
 
 // جلب جميع الرسائل

@@ -20,7 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($admin && password_verify($password, $admin['password'])) {
         $_SESSION['admin_id'] = $admin['id'];
         $_SESSION['admin_username'] = $admin['username'];
-        redirect('admin/index.php');
+        // BASE_URL في مجلد admin/ ستكون مثل http://site.com/tawabil/admin/
+        // لذلك نعيد التوجيه إلى index.php مباشرة بدون تكرار admin/ مرة أخرى
+        redirect('index.php');
     } else {
         $error = 'اسم المستخدم أو كلمة المرور غير صحيحة';
     }

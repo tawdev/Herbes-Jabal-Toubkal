@@ -2,7 +2,7 @@
 require_once '../config/config.php';
 
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    redirect('login.php');
 }
 
 $conn = getDBConnection();
@@ -15,7 +15,8 @@ if (isset($_GET['delete'])) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
-    redirect('admin/recipes.php');
+    // نبقى داخل مجلد admin/ لذا نعيد التوجيه إلى recipes.php مباشرة
+    redirect('recipes.php');
 }
 
 // جلب جميع الوصفات

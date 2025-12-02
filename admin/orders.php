@@ -2,7 +2,7 @@
 require_once '../config/config.php';
 
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    redirect('login.php');
 }
 
 $conn = getDBConnection();
@@ -16,7 +16,7 @@ if (isset($_GET['update_status'])) {
     $stmt->bind_param("si", $status, $orderId);
     $stmt->execute();
     $stmt->close();
-    redirect('admin/orders.php');
+    redirect('orders.php');
 }
 
 // جلب جميع الطلبات

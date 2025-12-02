@@ -3,7 +3,9 @@ require_once '../config/config.php';
 
 // التحقق من تسجيل الدخول
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    // نحن حالياً داخل مجلد admin/، و BASE_URL هنا يشير إلى /tawabil/admin/
+    // لذلك نستخدم login.php مباشرة بدون إضافة admin/ مرة أخرى
+    redirect('login.php');
 }
 
 $conn = getDBConnection();
@@ -150,7 +152,7 @@ closeDBConnection($conn);
                 <div class="stat-label">طلبات معلقة</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value"><?php echo number_format($stats['total_sales'], 2); ?> د.م.</div>
+                <div class="stat-value"><?php echo formatPrice($stats['total_sales']); ?></div>
                 <div class="stat-label">إجمالي المبيعات</div>
             </div>
             <div class="stat-card">

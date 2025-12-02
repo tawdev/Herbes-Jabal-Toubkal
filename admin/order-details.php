@@ -2,11 +2,11 @@
 require_once '../config/config.php';
 
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    redirect('login.php');
 }
 
 if (!isset($_GET['id'])) {
-    redirect('admin/orders.php');
+    redirect('orders.php');
 }
 
 $conn = getDBConnection();
@@ -22,7 +22,7 @@ $order = $result->fetch_assoc();
 $stmt->close();
 
 if (!$order) {
-    redirect('admin/orders.php');
+    redirect('orders.php');
 }
 
 // جلب عناصر الطلب

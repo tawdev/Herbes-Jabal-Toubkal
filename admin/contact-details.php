@@ -2,12 +2,11 @@
 require_once '../config/config.php';
 
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    redirect('login.php');
 }
 
 if (!isset($_GET['id'])) {
-    redirect('admin/contacts.php');
-}
+    redirect('contacts.php');
 
 $conn = getDBConnection();
 $contactId = intval($_GET['id']);
@@ -22,7 +21,7 @@ $contact = $result->fetch_assoc();
 $stmt->close();
 
 if (!$contact) {
-    redirect('admin/contacts.php');
+    redirect('contacts.php');
 }
 
 // تحديث الحالة إلى "مقروءة" إذا كانت جديدة
@@ -46,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_notes'])) {
     $stmt->execute();
     $stmt->close();
     
-    redirect('admin/contact-details.php?id=' . $contactId);
+    redirect('contact-details.php?id=' . $contactId);
 }
 
 closeDBConnection($conn);

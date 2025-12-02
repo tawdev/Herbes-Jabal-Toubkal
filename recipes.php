@@ -12,7 +12,15 @@ closeDBConnection($conn);
 
 <div class="container">
     <section class="section">
-        <h2 class="section-title">وصفات الطبخ</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <h2 class="section-title" style="margin: 0;">وصفات الطبخ</h2>
+            <a href="index.php" class="btn" style="background-color: #6b7280; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                العودة إلى الرئيسية
+            </a>
+        </div>
         
         <?php if (empty($recipes)): ?>
             <div style="text-align: center; padding: 4rem 2rem;">

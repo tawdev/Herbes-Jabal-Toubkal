@@ -2,7 +2,7 @@
 require_once '../config/config.php';
 
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    redirect('login.php');
 }
 
 $conn = getDBConnection();
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     closeDBConnection($conn);
     
-    redirect('admin/recipes.php');
+    redirect('recipes.php');
 }
 
 closeDBConnection($conn);

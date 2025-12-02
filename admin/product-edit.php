@@ -2,11 +2,11 @@
 require_once '../config/config.php';
 
 if (!isset($_SESSION['admin_id'])) {
-    redirect('admin/login.php');
+    redirect('login.php');
 }
 
 if (!isset($_GET['id'])) {
-    redirect('admin/products.php');
+    redirect('products.php');
 }
 
 $conn = getDBConnection();
@@ -22,7 +22,7 @@ $product = $result->fetch_assoc();
 $stmt->close();
 
 if (!$product) {
-    redirect('admin/products.php');
+    redirect('products.php');
 }
 
 // معالجة التعديل
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     closeDBConnection($conn);
     
-    redirect('admin/products.php');
+    redirect('products.php');
 }
 
 closeDBConnection($conn);

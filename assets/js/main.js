@@ -100,11 +100,39 @@ function filterProducts() {
         });
 }
 
+// دالة لتنسيق السعر (مطابقة لتنسيق PHP)
+function formatPriceJS(price) {
+    // تحويل السعر إلى نص
+    let priceStr = String(price);
+    
+    // إزالة أي أرقام غريبة تظهر قبل أو بعد السعر (مثل 262145)
+    priceStr = priceStr.replace(/^\d+\s+/, ''); // إزالة الأرقام في البداية
+    priceStr = priceStr.replace(/\s+\d+/, ''); // إزالة الأرقام في النهاية
+    priceStr = priceStr.replace(/\d{6,}/, ''); // إزالة أي أرقام طويلة (6+ أرقام)
+    
+    // استخراج الرقم الفعلي فقط
+    const match = priceStr.match(/[\d]+\.?[\d]*/);
+    if (match) {
+        priceStr = match[0];
+    }
+    
+    // تحويل إلى رقم وتنسيقه
+    const numPrice = parseFloat(priceStr) || 0;
+    const formatted = numPrice.toFixed(2);
+    
+    return formatted + ' DH';
+}
+
 function updateProductsGrid(products) {
     const grid = document.querySelector('.products-grid');
     if (!grid) return;
     
-    grid.innerHTML = products.map(product => `
+    grid.innerHTML = products.map(product => {
+        // تنظيف الأسعار
+        const displayPrice = formatPriceJS(product.price);
+        const displayPromoPrice = product.promo_price ? formatPriceJS(product.promo_price) : null;
+        
+        return `
         <div class="product-card">
             ${product.promo ? '<span class="product-badge">عرض خاص</span>' : ''}
             <img src="${product.image}" alt="${product.name_ar}" class="product-image" onerror="this.src='images/placeholder.jpg'">
@@ -114,19 +142,20 @@ function updateProductsGrid(products) {
                 <p class="product-description">${product.description_ar || product.description}</p>
                 <div class="product-footer">
                     <div>
-                        ${product.promo && product.promo_price ? 
-                            `<span class="product-price">${product.promo_price} د.م.</span>
-                             <span class="product-price-old">${product.price} د.م.</span>` :
-                            `<span class="product-price">${product.price} د.م.</span>`
+                        ${product.promo && displayPromoPrice ? 
+                            `<span class="product-price">${displayPromoPrice}</span>
+                             <span class="product-price-old">${displayPrice}</span>` :
+                            `<span class="product-price">${displayPrice}</span>`
                         }
                     </div>
-                    <button class="add-to-cart" onclick="addToCart(${product.id}, '${product.name_ar}', ${product.promo && product.promo_price ? product.promo_price : product.price})">
+                    <button class="add-to-cart" onclick="addToCart(${product.id}, '${product.name_ar}', ${parseFloat(displayPrice.replace(' DH', ''))})">
                         أضف للسلة
                     </button>
                 </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 // تكبير صورة المنتج
